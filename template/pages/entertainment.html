@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+
+{% block title %}Entertainment{% endblock %}
+
+{% block content %}
+
+<div class="page-title">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <ol class="breadcrumb">
+          <li><a href="{% url 'index' %}">ទំព័រដើម</a></li>
+          <li>កម្សាន្ត</li>
+        </ol>
+      </div>
+      <!-- Col end -->
+    </div>
+    <!-- Row end -->
+  </div>
+  <!-- Container end -->
+</div>
+<!-- End Breadcrumb -->
+
+
+
+
+
+<section class="block-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+        <div class="block category-listing category-style2">
+          <h3 class="block-title"><span>កម្សាន្ត</span></h3>
+          {% if posts %}
+          {% for post in posts %}
+          <div class="post-block-style post-list clearfix">
+            <div class="row">
+              <div class="col-md-5 col-sm-6">
+                <div class="post-thumb thumb-float-style">
+                  <a href="{% url 'article' post.id %}">
+                    <img
+                      class="img-responsive"
+                      src="{{post.thumbnail.url}}"
+                      alt=""
+                    />
+                  </a>
+                 
+                </div>
+              </div>
+              <!-- Img thumb col end -->
+
+              <div class="col-md-7 col-sm-6">
+                <div class="post-content">
+                  <h2 class="post-title title-large">
+                    <a href="{% url 'article' post.id %}"
+                      >{{post.title}}</a
+                    >
+                  </h2>
+                  <div class="post-meta">
+                    <span class="post-author"
+                      ><a >{{post.author.get_full_name}}</a></span
+                    >
+                    <span class="post-date">{{post.publish_date}}</span>
+                    <span class="post-comment pull-right"
+                      ><i class="fa fa-comments-o"></i>
+                      <a href="#" class="comments-link"
+                        ><span>03</span></a
+                      ></span
+                    >
+                  </div>
+                  <p>
+                    {{post.description}}
+                  </p>
+                </div>
+                <!-- Post content end -->
+              </div>
+              <!-- Post col end -->
+            </div>
+            <!-- 1st row end -->
+          </div>
+          <!--  Post list end -->
+          {% endfor %}
+          {% endif %}
+
+        </div>
+        <!-- Block Technology end -->
+
+        {% include 'partials/_paginator.html' %}
+        <!-- End Pagination -->
+      
+      </div>
+      <!-- Content Col end -->
+
+      {% include 'partials/_sidebar.html' %}
+      <!-- Sidebar Col end -->
+    </div>
+    <!-- Row end -->
+
+  </div>
+  <!-- Container end -->
+</section>
+<!-- First block end -->
+
+
+
+{% include 'partials/_bannerfooter.html' %}
+<!-- Ad Banner Footer -->
+
+{% endblock content %}

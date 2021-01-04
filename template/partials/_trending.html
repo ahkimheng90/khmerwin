@@ -1,0 +1,32 @@
+<div class="trending-light hidden-xs">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h3 class="trending-title">ពត៏មានថ្មីៗ</h3>
+        <div id="trending-slide" class="owl-carousel owl-theme trending-slide">
+          {% if posts %}
+          {% for post in posts %}
+          <div class="item">
+            <div class="post-content">
+              <h2 class="post-title title-small">
+                <a href="{% url 'article' post.id %}"
+                  >{{post.title}}</a
+                >
+              </h2>
+            </div>
+            <!-- Post content end -->
+          </div>
+
+          {% endfor %}
+          {% endif %}
+          <!-- Item 1 end -->
+          
+        </div>
+        <!-- Carousel end -->
+      </div>
+      <!-- Col end -->
+    </div>
+    <!--/ Row end -->
+  </div>
+  <!--/ Container end -->
+</div>

@@ -1,0 +1,114 @@
+<div class="main-nav clearfix">
+  <div class="container">
+    <div class="row">
+      <nav class="site-navigation navigation">
+        <div class="site-nav-inner pull-left">
+          <button
+            type="button"
+            class="navbar-toggle"
+            data-toggle="collapse"
+            data-target=".navbar-collapse"
+          >
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+          <div class="collapse navbar-collapse navbar-responsive-collapse">
+            <ul class="nav navbar-nav">
+              <li 
+              {% if '/' == request.path %}
+                class="active"
+              {% else %}
+                class=""
+              {% endif %}
+              >
+                <a href="{% url 'index' %}">ទំព័រដើម</a>
+              </li>
+              <li 
+              {% if 'social' in request.path %}
+                class="active"
+              {% else %}
+                class=""
+              {% endif %}
+              >
+                <a href="{% url 'social' %}">សង្គម</a>
+              </li>
+
+              <li
+              {% if 'entertainment' in request.path %}
+                class="active"
+              {% else %}
+                class=""
+              {% endif %}
+              >
+                <a href="{% url 'entertainment' %}">កម្សាន្ត</a>
+              </li>
+              <li
+              {% if 'sport' in request.path %}
+                class="active"
+              {% else %}
+                class=""
+              {% endif %}
+              >
+                <a href="{% url 'sport' %}">កីឡា</a>
+              </li>
+
+              <li
+              {% if 'technology' in request.path %}
+                class="active"
+              {% else %}
+                class=""
+              {% endif %}
+              >
+                <a href="{% url 'technology' %}">បច្ចេកវិទ្យា</a>
+              </li>
+              <li
+              {% if 'health' in request.path %}
+                class="active"
+              {% else %}
+                class=""
+              {% endif %}
+              >
+                <a href="{% url 'health' %}">សុខភាព​ និង សម្រស់</a>
+              </li>
+              <li
+              {% if 'lifestyle' in request.path %}
+                class="active"
+              {% else %}
+                class=""
+              {% endif %}
+              >
+                <a href="{% url 'lifestyle' %}">បែបផែនជីវិត</a>
+              </li>
+
+              <!-- Features menu end -->
+            </ul>
+            <!--/ Nav ul end -->
+          </div>
+          <!--/ Collapse end -->
+        </div>
+        <!-- Site Navbar inner end -->
+      </nav>
+      <!--/ Navigation end -->
+
+      <div class="nav-search">
+        <span id="search"><i class="fa fa-search"></i></span>
+      </div>
+      <!-- Search end -->
+
+      <div class="search-block" style="display: none">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Type what you want and enter"
+        />
+        <span class="search-close">&times;</span>
+      </div>
+      <!-- Site search end -->
+    </div>
+    <!--/ Row end -->
+  </div>
+  <!--/ Container end -->
+</div>

@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+
+{% block title %}អត្ថបទលម្អិត{% endblock %}
+
+{% block content %}
+
+<div class="page-title">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <ol class="breadcrumb">
+          <li><a href="{% url 'index' %}">ទំព័រដើម</a></li>
+          {% if post %}
+          <li>{{post.category}}</li>
+          
+          {% endif %}
+        </ol>
+      </div>
+      <!-- Col end -->
+    </div>
+    <!-- Row end -->
+  </div>
+  <!-- Container end -->
+</div>
+<!-- End Breadcrumb -->
+
+
+
+
+
+<section class="block-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                
+                <div class="single-post">
+                    
+                    <div class="post-title-area">
+                        <a class="post-cat" >{{post.category}}</a>
+                        <h2 class="post-title">
+                             {{post.title}}
+                         </h2>
+                         <div class="post-meta">
+                            <span class="post-author">
+                                ដោយ៖ <a >{{post.author.get_full_name}}</a>
+                            </span>
+                            <span class="post-date"><i class="fa fa-clock-o"></i> {{post.publish_date}}</span>
+                            <span class="post-hits"><i class="fa fa-eye"></i> 21</span>
+                            <span class="post-comment"><i class="fa fa-comments-o"></i>
+                            <a href="#" class="comments-link"><span>01</span></a></span>
+                        </div>
+                    </div><!-- Post title end -->
+
+                    <div class="post-content-area">
+                        <div class="post-media post-featured-image">
+                            <a href="{{post.thumbnail.url}}" class="gallery-popup"><img src="{{post.thumbnail.url}}" class="img-responsive "  id ="post-img" alt=""></a>
+                        </div>
+                        <div class="entry-content">
+                          {{post.content|safe}}
+                              
+                        </div><!-- Tags end -->
+
+
+
+                        <div class="share-items clearfix">
+                           <ul class="post-social-icons unstyled">
+                               <li class="facebook">
+                                   <a id='facebook-btn' 
+                                   href="https://www.facebook.com/sharer.php?u=http://127.0.0.1:8000/{% url 'article' post.id %}"
+                                     target="_blank">
+                                   <i class="fa fa-facebook"></i> <span class="ts-social-title">ចែករំលែក</span>
+                                   </a>
+                               </li>
+                               
+                           </ul>
+                       </div><!-- Share items end -->
+
+                    </div><!-- post-content end -->
+                </div><!-- Single post end -->
+
+        
+
+               
+
+                <div class="related-posts block">
+                    <h3 class="block-title"><span>អត្ថបទទាក់ទង</span></h3>
+                    
+
+                    <div id="latest-news-slide" class="owl-carousel owl-theme latest-news-slide">
+                      {% if related_post %}
+                      {% for post in related_post %}
+
+                        <div class="item">
+                            <div class="post-block-style clearfix">
+                                <div class="post-thumb">
+                                    <a href="{% url 'article' post.id %}"><img class="img-responsive" src="{{post.thumbnail.url}}" alt="" /></a>
+                                </div>
+                                <a class="post-cat" >{{post.category}}</a>
+                                <div class="post-content">
+                                     <h2 class="post-title title-medium">
+                                         <a href="{% url 'article' post.id %}">{{post.title}}</a>
+                                     </h2>
+                                     <div class="post-meta">
+                                         <span class="post-author"><a >{{post.author.get_full_name}}</a></span>
+                                         <span class="post-date">{{post.publish_date}}</span>
+                                     </div>
+                                 </div><!-- Post content end -->
+                            </div><!-- Post Block style end -->
+                        </div><!-- Item 1 end -->
+                      {% endfor%}
+                      {% endif %}
+    
+
+                      
+                    </div><!-- Carousel end -->
+
+                </div><!-- Related posts end -->
+
+        
+
+            </div><!-- Content Col end -->
+
+            {% include 'partials/_sidebar.html' %}
+            <!-- Sidebar Col end -->
+
+        </div><!-- Row end -->
+    </div><!-- Container end -->
+</section><!-- First block end -->
+
+
+
+{% include 'partials/_bannerfooter.html' %}
+<!-- Ad content top end -->
+
+
+{% endblock content %}
+

@@ -1,0 +1,45 @@
+<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+    <div class="sidebar sidebar-right">
+      <div class="widget">
+        <h3 class="block-title "><span >តាមដានតាមរយៈ</span></h3>
+
+        <ul class="social-icon">
+          <li>
+            <a href="#" target="_blank"
+              ><i class="fa fa-facebook"></i
+            ></a>
+          </li>
+          <li>
+            <a href="#" target="_blank"
+              ><i class="fa fa-youtube"></i
+            ></a>
+          </li>
+          
+          <li>
+            <a href="#" target="_blank"
+              ><i class="fa fa-instagram"></i
+            ></a>
+          </li>
+
+        </ul>
+      </div>
+      <!-- Widget Social end -->
+
+      <!-- Popular news widget end -->
+      {% if banner_sidebar %}
+      {% for banner in banner_sidebar %}
+      <div class="widget text-center">
+        <img
+          class="banner img-responsive"
+          src="{{banner.image.url}}"
+          alt="banner"
+        />
+      </div>
+      {% endfor %}
+      
+      {% endif %}
+      <!-- Sidebar Ad end -->
+
+    </div>
+    <!-- Sidebar right end -->
+  </div>

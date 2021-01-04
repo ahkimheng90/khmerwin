@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Battambang&display=swap');
+
+
+* {
+font-family: 'Battambang', 'Roboto';
+
+}
+
+body {
+font-family: 'Battambang', 'Roboto';
+
+}
+
+p, h1 {
+font-family: 'Battambang', 'Roboto';
+
+}
+
+td, th {
+    font-family: 'Battambang', 'Roboto';
+}
+input, textarea, select, .form-row p, form .button​ {
+
+    font-family: 'Battambang', 'Roboto';
+
+}

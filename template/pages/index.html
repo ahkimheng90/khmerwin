@@ -1,0 +1,665 @@
+{% extends 'base.html' %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block content %}
+
+{% include 'partials/_trending.html' %}
+<!--/ Trending light end -->
+
+<section class="featured-post-area no-padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-xs-12 pad-r">
+        
+        <div
+          id="featured-slider"
+          class="owl-carousel owl-theme featured-slider"
+        >
+          {% if posts %}
+          {% for post in posts %}
+          <div
+            class="item"
+            style="
+              background-image: url({{post.thumbnail.url}});
+            "
+          >
+            <div class="featured-post">
+              <div class="post-content">
+                <a class="post-cat" >{{post.category}}</a>
+                <h2 class="post-title title-extra-large">
+                  <a href="{% url 'article' post.id %}">{{post.title}}</a>
+                </h2>
+                <span class="post-date">{{post.publishe_date}}</span>
+              </div>
+            </div>
+            <!--/ Featured post end -->
+          </div>
+          <!-- Item 1 end -->
+          {% endfor %}
+          {% endif %}
+        </div>
+        
+        <!-- Featured owl carousel end-->
+      </div>
+      <!-- Col 6 end -->
+
+      <div class="col-md-6 col-xs-12 pad-l">
+        <div class="row">
+          {% if posts %}
+          {% for post in posts %}
+
+          <div class="col-sm-6 pad-r-small">
+            <div
+              class="post-overaly-style contentTop fourNewsboxTop clearfix"
+            >
+              <div class="post-thumb">
+                <a href="{% url 'article' post.id %}"
+                  ><img
+                    class="img-responsive"
+                    src="{{post.thumbnail.url}}"
+                    alt=""
+                /></a>
+              </div>
+              <div class="post-content">
+                <a class="post-cat" >{{post.category}}</a>
+                <h2 class="post-title title-medium">
+                  <a href="{% url 'article' post.id %}">{{post.title}}</a>
+                </h2>
+              </div>
+              <!-- Post content end -->
+            </div>
+            <!-- Post Overaly end -->
+          </div>
+          <!-- Col end -->
+          {% endfor %}
+          {% endif %}
+
+        </div>
+        <!-- Row end -->
+      </div>
+      <!-- Col 6 end -->
+    </div>
+    <!-- Row end -->
+  </div>
+  <!-- Container end -->
+</section>
+
+
+
+
+
+<section class="block-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+        <!--- Featured Tab startet -->
+        
+        <div class="featured-tab color-blue">
+          <a href="{% url 'social' %}"><h3 class="block-title"><span>សង្គម</span></h3></a>
+
+          <div class="tab-content">
+            <div class="row">
+              {% if social_lastest_post %}
+              
+              <div class="col-md-6 col-sm-6">
+                <div class="post-block-style clearfix">
+                  <div class="post-thumb">
+                    <a href="{% url 'article' social_lastest_post.id %}">
+                      <img
+                        class="img-responsive"
+                        src="{{social_lastest_post.thumbnail.url}}"
+                        alt=""
+                      />
+                    </a>
+                  </div>
+
+                  <div class="post-content">
+                    <h2 class="post-title">
+                      <a href="{% url 'article' social_lastest_post.id %}"
+                        >{{social_lastest_post.title}}</a
+                      >
+                    </h2>
+                    <div class="post-meta">
+                      <span class="post-author"
+                        ><a >{{social_lastest_post.author.get_full_name}}</a></span
+                      >
+                      <span class="post-date">{{social_lastest_post.publish_date}}</span>
+                    </div>
+                    <p>
+                    {{social_lastest_post.description}}
+                    </p>
+                  </div>
+                  <!-- Post content end -->
+                </div>
+                <!-- Post Block style end -->
+              </div>
+            
+              {% endif %}
+              <!-- Col end -->
+
+
+              <div class="col-md-6 col-sm-6">
+                <div class="list-post-block">
+                  <ul class="list-post">
+                    {% if social_posts %}
+                    {% for post in social_posts %}
+
+                    <li class="clearfix">
+                      <div class="post-block-style post-float clearfix">
+                        <div class="post-thumb">
+                          <a href="{% url 'article' post.id %}">
+                            <img
+                              class="img-responsive"
+                              src="{{post.thumbnail.url}}"
+                              alt=""
+                            />
+                          </a>
+                        </div>
+                        <!-- Post thumb end -->
+
+                        <div class="post-content">
+                          <h2 class="post-title title-small">
+                            <a href="{% url 'article' post.id %}">{{post.title}}</a>
+                          </h2>
+                         
+                          <div class="post-meta">
+                            <span class="post-author">
+                              <a >{{post.author.get_full_name}}</a>
+                            </span>
+                            <span class="post-date">{{post.publish_date}}</span>
+                          </div>
+                        </div>
+                        <!-- Post content end -->
+                      </div>
+                      <!-- Post block style end -->
+                    </li>
+                    {% endfor %}
+                    {% endif %}
+
+                    <!-- Li 1 end -->
+
+             
+                  </ul>
+                  <!-- List post end -->
+                </div>
+                <!-- List post block end -->
+              </div>
+              <!-- List post Col end -->
+            </div>
+
+            <!-- Tab pane 1 end -->
+          </div>
+          <!-- tab content -->
+        </div>
+        
+        <!-- Technology Tab end -->
+
+        <div class="gap-40"></div>
+
+        <div class="featured-tab color-orange">
+          <a href="{% url 'entertainment' %}"><h3 class="block-title"><span>កម្សាន្ត</span></h3></a>
+
+          <div class="tab-content">
+            <div class="row">
+              {% if entertainment_lastest_post %}
+              
+              <div class="col-md-6 col-sm-6">
+                <div class="post-block-style clearfix">
+                  <div class="post-thumb">
+                    <a href="{% url 'article' entertainment_lastest_post.id %}">
+                      <img
+                        class="img-responsive"
+                        src="{{entertainment_lastest_post.thumbnail.url}}"
+                        alt=""
+                      />
+                    </a>
+                  </div>
+
+                  <div class="post-content">
+                    <h2 class="post-title">
+                      <a href="{% url 'article' entertainment_lastest_post.id %}"
+                        >{{entertainment_lastest_post.title}}</a
+                      >
+                    </h2>
+                    <div class="post-meta">
+                      <span class="post-author"
+                        ><a>{{entertainment_lastest_post.author.get_full_name}}</a></span
+                      >
+                      <span class="post-date">{{entertainment_lastest_post.publish_date}}</span>
+                    </div>
+                    <p>
+                    {{entertainment_lastest_post.description}}
+                    </p>
+                  </div>
+                  <!-- Post content end -->
+                </div>
+                <!-- Post Block style end -->
+              </div>
+            
+              {% endif %}
+              <!-- Col end -->
+
+
+              <div class="col-md-6 col-sm-6">
+                <div class="list-post-block">
+                  <ul class="list-post">
+                    {% if entertainment_posts %}
+                    {% for post in entertainment_posts %}
+
+                    <li class="clearfix">
+                      <div class="post-block-style post-float clearfix">
+                        <div class="post-thumb">
+                          <a href="{% url 'article' post.id %}">
+                            <img
+                              class="img-responsive"
+                              src="{{post.thumbnail.url}}"
+                              alt=""
+                            />
+                          </a>
+                        </div>
+                        <!-- Post thumb end -->
+
+                        <div class="post-content">
+                          <h2 class="post-title title-small">
+                            <a href="{% url 'article' post.id %}">{{post.title}}</a>
+                          </h2>
+                          <div class="post-meta">
+                            <span class="post-author">
+                              <a >{{post.author.get_full_name}}</a>
+                            </span>
+                            <span class="post-date">{{post.publish_date}}</span>
+                          </div>
+                        </div>
+                        <!-- Post content end -->
+                      </div>
+                      <!-- Post block style end -->
+                    </li>
+                    {% endfor %}
+                    {% endif %}
+
+                    <!-- Li 1 end -->
+
+             
+                  </ul>
+                  <!-- List post end -->
+                </div>
+                <!-- List post block end -->
+              </div>
+              <!-- List post Col end -->
+            </div>
+
+            <!-- Tab pane 1 end -->
+          </div>
+          <!-- tab content -->
+        
+        </div>
+
+        <!-- Block Lifestyle end -->
+
+        <div class="gap-50"></div>
+
+        <div class="featured-tab color-red">
+          <a href="{% url 'sport' %}"><h3 class="block-title"><span>កីឡា</span></h3></a>
+
+          <div class="tab-content">
+            <div class="row">
+              {% if sport_lastest_post %}
+              
+              <div class="col-md-6 col-sm-6">
+                <div class="post-block-style clearfix">
+                  <div class="post-thumb">
+                    <a href="{% url 'article' sport_lastest_post.id %}">
+                      <img
+                        class="img-responsive"
+                        src="{{sport_lastest_post.thumbnail.url}}"
+                        alt=""
+                      />
+                    </a>
+                  </div>
+
+                  <div class="post-content">
+                    <h2 class="post-title">
+                      <a href="{% url 'article' sport_lastest_post.id %}"
+                        >{{sport_lastest_post.title}}</a
+                      >
+                    </h2>
+                    <div class="post-meta">
+                      <span class="post-author"
+                        ><a>{{sport_lastest_post.author.get_full_name}}</a></span
+                      >
+                      <span class="post-date">{{sport_lastest_post.publish_date}}</span>
+                    </div>
+                    <p>
+                    {{sport_lastest_post.description}}
+                    </p>
+                  </div>
+                  <!-- Post content end -->
+                </div>
+                <!-- Post Block style end -->
+              </div>
+            
+              {% endif %}
+              <!-- Col end -->
+
+
+              <div class="col-md-6 col-sm-6">
+                <div class="list-post-block">
+                  <ul class="list-post">
+                    {% if sport_posts %}
+                    {% for post in sport_posts %}
+
+                    <li class="clearfix">
+                      <div class="post-block-style post-float clearfix">
+                        <div class="post-thumb">
+                          <a href="{% url 'article' post.id %}">
+                            <img
+                              class="img-responsive"
+                              src="{{post.thumbnail.url}}"
+                              alt=""
+                            />
+                          </a>
+                        </div>
+                        <!-- Post thumb end -->
+
+                        <div class="post-content">
+                          <h2 class="post-title title-small">
+                            <a href="{% url 'article' post.id %}">{{post.title}}</a>
+                          </h2>
+                          <div class="post-meta">
+                            <span class="post-author">
+                              <a >{{post.author.get_full_name}}</a>
+                            </span>
+                            <span class="post-date">{{post.publish_date}}</span>
+                          </div>
+                        </div>
+                        <!-- Post content end -->
+                      </div>
+                      <!-- Post block style end -->
+                    </li>
+                    {% endfor %}
+                    {% endif %}
+
+                    <!-- Li 1 end -->
+
+             
+                  </ul>
+                  <!-- List post end -->
+                </div>
+                <!-- List post block end -->
+              </div>
+              <!-- List post Col end -->
+            </div>
+
+            <!-- Tab pane 1 end -->
+          </div>
+          <!-- tab content -->
+        </div>
+
+        <!--- Latest news end -->
+      </div>
+      <!-- Content Col end -->
+
+   {% include 'partials/_sidebar.html' %}
+      <!-- Sidebar Col end -->
+    </div>
+    <!-- Row end -->
+  </div>
+  <!-- Container end -->
+</section>
+<!-- First block end -->
+
+
+
+<section class="block-wrapper no-padding">
+  <div class="container">
+    <div class="row">
+      
+      <div class="col-md-4">
+        <div class="block color-dark-blue">
+          <a href="{% url 'technology' %}"><h3 class="block-title"><span>បច្ចេកវិទ្យា</span></h3></a>
+
+         {% if technology_lastest_post %}
+          <div class="post-overaly-style clearfix">
+            <div class="post-thumb">
+              <a href="{% url 'article' technology_lastest_post.id %}">
+                <img
+                  class="img-responsive"
+                  src="{{technology_lastest_post.thumbnail.url}}"
+                  alt=""
+                />
+              </a>
+            </div>
+
+            <div class="post-content">
+              <h2 class="post-title">
+                <a href="{% url 'article' technology_lastest_post.id %}"
+                  >{{technology_lastest_post.title}}</a
+                >
+              </h2>
+              <div class="post-meta">
+                <span class="post-date">{{technology_lastest_post.publish_date}}</span>
+              </div>
+            </div>
+            <!-- Post content end -->
+          </div>
+          {% endif %}
+          <!-- Post Overaly Article end -->
+
+          
+          <div class="list-post-block">
+            <ul class="list-post">
+              {% if technology_posts %}
+              {% for post in technology_posts %}
+              <li class="clearfix">
+                <div class="post-block-style post-float clearfix">
+                  <div class="post-thumb">
+                    <a href="{% url 'article' post.id %}">
+                      <img
+                        class="img-responsive"
+                        src="{{post.thumbnail.url}}"
+                        alt=""
+                      />
+                    </a>
+                  </div>
+                  <!-- Post thumb end -->
+
+                  <div class="post-content">
+                    <h2 class="post-title title-small">
+                      <a href="{% url 'article' post.id %}"
+                        >{{post.title}}</a
+                      >
+                    </h2>
+                    <div class="post-meta">
+                      <span class="post-author">
+                        <a >{{post.author.get_full_name}}</a>
+                      </span>
+                      <span class="post-date">{{post.publish_date}}</span>
+                    </div>
+                  </div>
+                  <!-- Post content end -->
+                </div>
+                <!-- Post block style end -->
+              </li>
+              <!-- Li  end -->
+              {% endfor %}
+              {% endif%}
+            </ul>
+            <!-- List post end -->
+          </div>
+         
+           <!-- List post block end -->
+        </div>
+        <!-- Block end -->
+      </div>
+      
+      <!-- Travel Col end -->
+
+      <div class="col-md-4">
+        <div class="block color-aqua">
+          <a href="{% url 'health' %}"><h3 class="block-title"><span>សុខភាព​និងសម្រស់</span></h3></a>
+          {% if health_lastest_post %}
+          <div class="post-overaly-style clearfix">
+            <div class="post-thumb">
+              <a href="{% url 'article' health_lastest_post.id %}">
+                <img
+                  class="img-responsive"
+                  src="{{health_lastest_post.thumbnail.url}}"
+                  alt=""
+                />
+              </a>
+            </div>
+
+            <div class="post-content">
+              <h2 class="post-title">
+                <a href="{% url 'article' health_lastest_post.id %}"
+                  >{{health_lastest_post.title}}</a
+                >
+              </h2>
+              <div class="post-meta">
+                <span class="post-date">{{health_lastest_post.publish_date}}</span>
+              </div>
+            </div>
+            <!-- Post content end -->
+          </div>
+          {% endif %}
+          <!-- Post Overaly Article end -->
+
+          
+          <div class="list-post-block">
+            <ul class="list-post">
+              {% if health_posts %}
+              {% for post in health_posts %}
+              <li class="clearfix">
+                <div class="post-block-style post-float clearfix">
+                  <div class="post-thumb">
+                    <a href="{% url 'article' post.id %}">
+                      <img
+                        class="img-responsive"
+                        src="{{post.thumbnail.url}}"
+                        alt=""
+                      />
+                    </a>
+                  </div>
+                  <!-- Post thumb end -->
+
+                  <div class="post-content">
+                    <h2 class="post-title title-small">
+                      <a href="{% url 'article' post.id %}"
+                        >{{post.title}}</a
+                      >
+                    </h2>
+                    <div class="post-meta">
+                      <span class="post-author">
+                        <a >{{post.author.get_full_name}}</a>
+                      </span>
+                      <span class="post-date">{{post.publish_date}}</span>
+                    </div>
+                  </div>
+                  <!-- Post content end -->
+                </div>
+                <!-- Post block style end -->
+              </li>
+              <!-- Li  end -->
+              {% endfor %}
+              {% endif%}
+            </ul>
+            <!-- List post end -->
+          </div>
+         
+           <!-- List post block end -->
+        </div>
+        <!-- Block end -->
+      </div>
+      <!-- Gadget Col end -->
+
+      <div class="col-md-4">
+        <div class="block color-violet">
+          <a href="{% url 'lifestyle' %}"><h3 class="block-title"><span>បែបផែនជីវិត</span></h3></a>
+          {% if lifestyle_lastest_post %}
+          <div class="post-overaly-style clearfix">
+            <div class="post-thumb">
+              <a href="{% url 'article' lifestyle_lastest_post.id %}">
+                <img
+                  class="img-responsive"
+                  src="{{lifestyle_lastest_post.thumbnail.url}}"
+                  alt=""
+                />
+              </a>
+            </div>
+
+            <div class="post-content">
+              <h2 class="post-title">
+                <a href="{% url 'article' lifestyle_lastest_post.id %}"
+                  >{{lifestyle_lastest_post.title}}</a
+                >
+              </h2>
+              <div class="post-meta">
+                <span class="post-date">{{lifestyle_lastest_post.publish_date}}</span>
+              </div>
+            </div>
+            <!-- Post content end -->
+          </div>
+          {% endif %}
+          <!-- Post Overaly Article end -->
+
+          
+          <div class="list-post-block">
+            <ul class="list-post">
+              {% if lifestyle_posts %}
+              {% for post in lifestyle_posts %}
+              <li class="clearfix">
+                <div class="post-block-style post-float clearfix">
+                  <div class="post-thumb">
+                    <a href="{% url 'article' post.id %}">
+                      <img
+                        class="img-responsive"
+                        src="{{post.thumbnail.url}}"
+                        alt=""
+                      />
+                    </a>
+                  </div>
+                  <!-- Post thumb end -->
+
+                  <div class="post-content">
+                    <h2 class="post-title title-small">
+                      <a href="{% url 'article' post.id %}"
+                        >{{post.title}}</a
+                      >
+                    </h2>
+                    <div class="post-meta">
+                      <span class="post-author">
+                        <a >{{post.author.get_full_name}}</a>
+                      </span>
+                      <span class="post-date">{{post.publish_date}}</span>
+                    </div>
+                  </div>
+                  <!-- Post content end -->
+                </div>
+                <!-- Post block style end -->
+              </li>
+              <!-- Li  end -->
+              {% endfor %}
+              {% endif%}
+            </ul>
+            <!-- List post end -->
+          </div>
+         
+           <!-- List post block end -->
+        </div>
+        <!-- Block end -->
+      </div>
+      <!-- Health Col end -->
+    </div>
+    <!-- Row end -->
+  </div>
+  <!-- Container end -->
+</section>
+<!-- 2nd block end -->
+
+
+
+{% include 'partials/_bannerfooter.html' %}
+<!-- Ad content top end -->
+
+{% endblock content %}

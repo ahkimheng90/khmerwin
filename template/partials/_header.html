@@ -1,0 +1,35 @@
+{% load static %}
+
+<header id="header" class="header">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-3 col-md-3">
+        <div class="logo">
+          <a href="{% url 'index' %}">
+            <img src="{% static 'images/logos/logo.png'%}" alt="Logo" />
+          </a>
+        </div>
+      </div>
+      <!-- logo col end -->
+
+      <div class="col-xs-12 col-sm-9 col-md-9 header-right">
+        {% if banner_header %}
+          <div class="ad-banner pull-right">
+          {% for banner in banner_header %}
+            <a href="#"
+              ><img
+                src="{{banner.image.url}}"
+                class="img-responsive"
+                alt="BannerHeader"
+            /></a>
+          {% endfor %}
+          
+          {% endif%}
+          </div>
+      </div>
+      <!-- header right end -->
+    </div>
+    <!-- Row end -->
+  </div>
+  <!-- Logo and banner area end -->
+</header>

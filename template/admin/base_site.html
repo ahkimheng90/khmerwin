@@ -1,0 +1,13 @@
+{% extends 'admin/base.html' %}
+
+{% load static %}
+
+{% block branding %}
+    <h1 id="brand">
+        <img src="{% static 'images/logos/logo.png' %}" alt="LOGO">
+    </h1>
+{% endblock  %}
+
+{% block extrastyle %}
+{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static 'css/override-admin.css' %}" />
+{% endblock %}

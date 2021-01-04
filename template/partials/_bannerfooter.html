@@ -1,0 +1,20 @@
+<section class="ad-content-area text-center">
+    {% if banner_footer %}
+    {% for banner in banner_footer %}
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <img
+            class="img-responsive"
+            src="{{banner.image.url}}"
+            alt=""
+          />
+        </div>
+        <!-- Col end -->
+      </div>
+      <!-- Row end -->
+    </div>
+    {% endfor %}
+    {% endif %}
+    <!-- Container end -->
+  </section>
